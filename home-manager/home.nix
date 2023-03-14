@@ -49,8 +49,10 @@
     bitwarden
     gh
     waybar
-    rofi-wayland
+    wofi
     mako
+    font-awesome
+    nerdfonts
 
 
 

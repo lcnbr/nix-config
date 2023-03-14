@@ -52,7 +52,8 @@
   };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = false;#true;
+  services.xserver.enable = false;
+  services.xserver.exportConfiguration = true;
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = false;#true;
@@ -63,6 +64,7 @@
     layout = "us";
     xkbVariant = "colemak_dh_iso";
   };
+  i18n.consoleUseXkbConfig = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -99,7 +101,13 @@
     ];
   };
 
-
+  environment.sessionVariables = {
+    LIBVA_DRIVER_NAME="nvidia";
+    XDG_SESSION_TYPE="wayland";
+    GBM_BACKEND="nvidia-drm";
+    __GLX_VENDOR_LIBRARY_NAME="nvidia";
+    WLR_NO_HARDWARE_CURSORS="1";
+  };
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
