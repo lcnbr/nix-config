@@ -47,6 +47,8 @@
   home.packages = with pkgs; [
     cowsay
     bitwarden
+    git
+    firefox-wayland
     gh
     waybar
     wofi
