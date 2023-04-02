@@ -64,15 +64,17 @@
     layout = "us";
     xkbVariant = "colemak_dh_iso";
   };
-  i18n.consoleUseXkbConfig = true;
+  console.useXkbConfig = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  security.polkit.enable = true;
 
   # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
+
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -107,6 +109,8 @@
     GBM_BACKEND="nvidia-drm";
     __GLX_VENDOR_LIBRARY_NAME="nvidia";
     WLR_NO_HARDWARE_CURSORS="1";
+    NIXOS_OZONE_WL = "1";
+    MOZ_ENABLE_WAYLAND="1";
   };
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -136,6 +140,14 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
+ xdg.mime.enable = true;
+  xdg.mime.defaultApplications = {
+  "text/html" = "firefox";
+  "x-scheme-handler/http" = "firefox";
+  "x-scheme-handler/https" = "firefox";
+  "x-scheme-handler/about" = "firefox";
+  "x-scheme-handler/unknown" = "firefox";
+};
 
   # List services that you want to enable:
 
