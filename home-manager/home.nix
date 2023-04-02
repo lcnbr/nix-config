@@ -53,11 +53,21 @@
     mako
     font-awesome
     nerdfonts
+    qt6.qtwayland
+    polkit_gnome
+    keychain
+    gnome.gnome-keyring
+    networkmanagerapplet
+    tdesktop
+    sioyek
+    nodejs
+    rustup
+  
 
 
 
   ];
-
+    services.gnome-keyring.enable = true;
 
   programs.waybar = {
       enable = true;
