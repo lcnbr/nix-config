@@ -65,6 +65,7 @@
     nodejs
     rustup
     thunderbird
+    zoom
   
 
 
