@@ -106,7 +106,7 @@
     WLR_NO_HARDWARE_CURSORS="1";
     NIXOS_OZONE_WL = "1";
     MOZ_ENABLE_WAYLAND="1";
-    XCURSOR_SIZE="24";
+    XCURSOR_SIZE="48";
   };
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -162,6 +162,6 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "22.11"; # Did you read the comment?
+  system.stateVersion = "22.11"; 
 
 }
