@@ -41,7 +41,7 @@
     git
     firefox-wayland
     gh
-    waybar
+    waybar-hyprland-git
     wofi
     mako
     font-awesome
