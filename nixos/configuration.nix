@@ -9,6 +9,9 @@
   nix.settings = {
     substituters = ["https://hyprland.cachix.org"];
     trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pyj6jIBMioiJM7ypFP8PwtkuGc="];
+
+  };
+
   };  
   imports =
     [ # Include the results of the hardware scan.
@@ -126,6 +129,7 @@
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
      home-manager
+    waybar-hyprland
      inputs.nix-software-center.packages.${system}.nix-software-center
   ];
 

@@ -38,7 +38,6 @@
   home.packages = with pkgs; [
     cowsay
     bitwarden
-    waybar-hyprland
     gnome3.adwaita-icon-theme  # default gnome cursors    glib # gsettings
     swaylock
     swayidle
