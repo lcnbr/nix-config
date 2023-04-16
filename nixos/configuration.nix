@@ -14,12 +14,12 @@
   nixpkgs.config.allowUnfree = true;
 
   environment = {
-    systemPackages = [alejandra.defaultPackage.${system}];
-    systemPackages = with pkgs; [
+    systempkgs = with pkgs; [
      home-manager
      udiskie
      inputs.nix-software-center.packages.${system}.nix-software-center
     ];
+    systemPackages = [alejandra.defaultPackage.${system}] ++ systempkgs;
 
     sessionVariables = {
     LIBVA_DRIVER_NAME="nvidia";
