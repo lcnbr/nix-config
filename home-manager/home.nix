@@ -59,6 +59,7 @@
     rustup
     thunderbird
     zoom
+    scilab-bin
   
 
 
