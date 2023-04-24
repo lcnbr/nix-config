@@ -1,5 +1,10 @@
-{ inputs, lib, config, pkgs, ... }: {
-
+{
+  inputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     inputs.hyprland.homeManagerModules.default
   ];
@@ -22,7 +27,7 @@
       # Disable if you don't want unfree packages
       allowUnfree = true;
       # Workaround for https://github.com/nix-community/home-manager/issues/2942
-      allowUnfreePredicate = (_: true);
+      allowUnfreePredicate = _: true;
     };
   };
 
@@ -38,14 +43,21 @@
   home.packages = with pkgs; [
     cowsay
     bitwarden
-    gnome3.adwaita-icon-theme  # default gnome cursors    glib # gsettings
+    gnome3.adwaita-icon-theme # default gnome cursors    glib # gsettings
     swaylock
     swayidle
     git
+    zulip
+    figma-linux
+    deno
+    okular
     firefox-wayland
     gh
+    citrix_workspace
     wofi
+    xdg-utils
     mako
+    spotify-tui
     font-awesome
     nerdfonts
     qt6.qtwayland
@@ -60,47 +72,52 @@
     thunderbird
     zoom
     scilab-bin
-  
-
-
-
   ];
-    services.gnome-keyring.enable = true;
+  services.gnome-keyring.enable = true;
 
   programs.waybar = {
-      enable = true;
-      systemd = {
-        enable = false;
-        target = "graphical-session.target";
-      };
+    enable = true;
+    systemd = {
+      enable = false;
+      target = "graphical-session.target";
+    };
+  };
+
+  xdg.mimeApps = {
+    enable = true;
+    associations.added = {
+      "text/html" = ["firefox-wayland"];
+      "application/pdf" = ["sioyek"];
+    };
+    defaultApplications = {
+      "application/pdf" = ["sioyek"];
+      "text/html" = ["firefox-wayland"];
+      "text/x-uri" = ["firefox-wayland"];
+    };
   };
 
   programs = {
     kitty = {
       enable = true;
-      environment = { };
-      keybindings = { };
+      environment = {};
+      keybindings = {};
     };
     git = {
       enable = true;
       userName = "lucienh";
       userEmail = "huberlulu@gmail.com";
-      
-      };
+    };
   };
 
-  xdg.configFile."hypr/hyprland.conf".source=./hyprland.conf;
+  xdg.configFile."hypr/hyprland.conf".source = ./hyprland.conf;
 
-
-
- # Enable home-manager and git
+  # Enable home-manager and git
   programs.home-manager.enable = true;
   wayland.windowManager.hyprland.enable = true;
 
-
   programs.vscode = {
-     enable = true;
-     extensions = with pkgs.vscode-extensions; [];
+    enable = true;
+    extensions = with pkgs.vscode-extensions; [];
   };
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";

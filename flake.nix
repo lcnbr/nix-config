@@ -21,7 +21,7 @@
     };
 
     alejandra = {
-      url ="github:kamadorueda/alejandra/3.0.0";
+      url = "github:kamadorueda/alejandra/3.0.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -31,13 +31,17 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, ... }@inputs: {
+  outputs = {
+    nixpkgs,
+    home-manager,
+    ...
+  } @ inputs: {
     #'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
-        gluluon = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; }; # Pass flake inputs to our config
+      gluluon = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;}; # Pass flake inputs to our config
         # > Our main nixos configuration file <
-        modules = [ ./nixos/configuration.nix ];
+        modules = [./nixos/configuration.nix];
       };
     };
 
@@ -45,10 +49,10 @@
     # Available through 'home-manager --flake .#your-username@your-hostname'
     homeConfigurations = {
       "lucienh@gluluon" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux; 
-        extraSpecialArgs = { inherit inputs; }; # Pass flake inputs to our config
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        extraSpecialArgs = {inherit inputs;}; # Pass flake inputs to our config
         # > Our main home-manager configuration file <
-        modules = [ ./home-manager/home.nix ];
+        modules = [./home-manager/home.nix];
       };
     };
   };
