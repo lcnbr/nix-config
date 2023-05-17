@@ -14,6 +14,9 @@
   };
 
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-12.2.3"
+  ];
 
   fonts = {
     fonts = with pkgs; [
@@ -22,6 +25,7 @@
 
       # normal fonts
       jost
+      recursive
       atkinson-hyperlegible
 
       lexend
@@ -29,9 +33,10 @@
       noto-fonts-cjk
       noto-fonts-emoji
       roboto
+      ibm-plex
 
       # nerdfonts
-      (nerdfonts.override {fonts = ["Iosevka" "FiraCode" "JetBrainsMono"];})
+      (nerdfonts.override {fonts = ["IBMPlexMono" "Iosevka" "FiraCode" "JetBrainsMono"];})
     ];
 
     # use fonts specified by user rather than default ones
@@ -54,14 +59,18 @@
       ++ (with pkgs; [
         home-manager
         udiskie
+        libsForQt5.qt5ct
+        libsForQt5.qtstyleplugins
       ]);
 
     sessionVariables = {
-      LIBVA_DRIVER_NAME = "nvidia";
+     # LIBVA_DRIVER_NAME = "nvidia";
+      EDITOR = "code"; #for xplr nuke
       XDG_SESSION_TYPE = "wayland";
-      GBM_BACKEND = "nvidia-drm";
-      __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    #  GBM_BACKEND = "nvidia-drm";
+     # __GLX_VENDOR_LIBRARY_NAME = "nvidia";
       WLR_NO_HARDWARE_CURSORS = "1";
+      QT_QPA_PLATFORMTHEME = "gtk2";
       NIXOS_OZONE_WL = "1";
       MOZ_ENABLE_WAYLAND = "1";
       XCURSOR_SIZE = "48";
@@ -71,7 +80,7 @@
   imports = [
     # Include the results of the hardware scan.
     inputs.hyprland.nixosModules.default
-    inputs.hardware.nixosModules.lenovo-thinkpad-p1
+    inputs.hardware.nixosModules.lenovo-thinkpad-x13-yoga
     ./hardware-configuration.nix
   ];
 
@@ -108,6 +117,12 @@
     LC_TIME = "fr_CH.UTF-8";
   };
 
+  qt = {
+    enable = true;
+    platformTheme = "gtk2";
+    style = "gtk2";
+  };
+
   programs = {
     seahorse.enable = true;
     hyprland = {
@@ -140,10 +155,21 @@
 
     xserver = {
       exportConfiguration = true;
-      layout = "us";
+      layout = "ch";
       xkbVariant = "colemak_dh_iso";
       libinput.enable = true;
-      videoDrivers = ["nvidia"];
+#     videoDrivers = ["nvidia"];
+    };
+
+    udisks2 = {
+      enable = true;
+      settings = {
+        "mount_options.conf" = {
+          defaults = {
+            ntfs_defaults = "uid=$UID,gid=$GID,prealloc";
+          };
+        };
+      };
     };
 
     pipewire = {

@@ -46,8 +46,23 @@
     gnome3.adwaita-icon-theme # default gnome cursors    glib # gsettings
     swaylock
     swayidle
+    synology-drive-client
     git
     zulip
+    font-manager
+    woeusb
+    charm
+    glow
+    ntfs3g
+    zotero
+    gparted
+    lua
+    stylua
+    dua
+    xplr
+    ltex-ls
+    dolphin
+    pdfarranger
     figma-linux
     deno
     okular
@@ -58,8 +73,6 @@
     xdg-utils
     mako
     spotify-tui
-    font-awesome
-    nerdfonts
     qt6.qtwayland
     polkit_gnome
     keychain
@@ -86,26 +99,55 @@
   xdg.mimeApps = {
     enable = true;
     associations.added = {
-      "text/html" = ["firefox-wayland"];
-      "application/pdf" = ["sioyek"];
+      "text/html" = ["firefox-wayland.desktop"];
+      "application/pdf" = ["sioyek.desktop"];
     };
     defaultApplications = {
-      "application/pdf" = ["sioyek"];
-      "text/html" = ["firefox-wayland"];
-      "text/x-uri" = ["firefox-wayland"];
+      "application/pdf" = ["sioyek.desktop"];
+      "text/html" = ["firefox-wayland.desktop"];
+      "text/x-uri" = ["firefox-wayland.desktop"];
     };
   };
 
   programs = {
-    kitty = {
+    alacritty = {
       enable = true;
-      environment = {};
-      keybindings = {};
+      settings = {
+        font = {
+          normal = {
+            family = "BlexMono Nerd Font";
+            style = "Regular";
+          };
+
+          bold = {
+            family = "BlexMono Nerd Font";
+            style = "Bold";
+          };
+
+          size = 11;
+        };
+      };
     };
     git = {
       enable = true;
       userName = "lucienh";
       userEmail = "huberlulu@gmail.com";
+    };
+    nnn = {
+      enable = true;
+      package = pkgs.nnn.override {withNerdIcons = true;};
+      plugins = {
+        src = "${pkgs.nnn.src}/plugins";
+
+        mappings = {
+          d = "diffs";
+          f = "finder";
+          o = "fzopen";
+          p = "mocplay";
+          t = "nmount";
+          v = "imgview";
+        };
+      };
     };
   };
 
@@ -119,6 +161,7 @@
     enable = true;
     extensions = with pkgs.vscode-extensions; [];
   };
+
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 
