@@ -208,6 +208,7 @@ in {
           eamodio.gitlens
           bbenoist.nix
           arrterian.nix-env-selector
+          denoland.vscode-deno
         ]
         ++ marketplace-extensions;
       userSettings = {

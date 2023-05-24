@@ -26,7 +26,12 @@
       # normal fonts
       jost
       recursive
+      inter
       atkinson-hyperlegible
+      noto-fonts-extra #contains arimo
+      gyre-fonts
+      liberation_ttf
+      work-sans
 
       lexend
       noto-fonts
