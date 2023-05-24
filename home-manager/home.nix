@@ -211,7 +211,8 @@ in {
         ]
         ++ marketplace-extensions;
       userSettings = {
-        "workbench.colorTheme" = "Semantic Lunaria Light";
+        "workbench.colorTheme" = "Semantic Lunaria Light"; #theme, want to modify it 22.5.23
+        "git.enableSmartCommit" = true; # autofetch and things
       };
     };
     home-manager = {
