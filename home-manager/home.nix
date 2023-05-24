@@ -209,6 +209,7 @@ in {
           bbenoist.nix
           arrterian.nix-env-selector
           denoland.vscode-deno
+          ritwickdey.liveserver
         ]
         ++ marketplace-extensions;
       userSettings = {
