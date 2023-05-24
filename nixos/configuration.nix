@@ -64,11 +64,11 @@
       ]);
 
     sessionVariables = {
-     # LIBVA_DRIVER_NAME = "nvidia";
+      # LIBVA_DRIVER_NAME = "nvidia";
       EDITOR = "code"; #for xplr nuke
       XDG_SESSION_TYPE = "wayland";
-    #  GBM_BACKEND = "nvidia-drm";
-     # __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+      #  GBM_BACKEND = "nvidia-drm";
+      # __GLX_VENDOR_LIBRARY_NAME = "nvidia";
       WLR_NO_HARDWARE_CURSORS = "1";
       QT_QPA_PLATFORMTHEME = "gtk2";
       NIXOS_OZONE_WL = "1";
@@ -158,7 +158,7 @@
       layout = "ch";
       xkbVariant = "colemak_dh_iso";
       libinput.enable = true;
-#     videoDrivers = ["nvidia"];
+      #     videoDrivers = ["nvidia"];
     };
 
     udisks2 = {
@@ -185,6 +185,7 @@
   hardware = {
     pulseaudio.enable = false;
     opengl.enable = true;
+    bluetooth.enable = true;
     nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
     nvidia.modesetting.enable = true;
   };

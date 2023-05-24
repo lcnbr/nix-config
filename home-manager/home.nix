@@ -4,7 +4,12 @@
   config,
   pkgs,
   ...
-}: {
+}: let
+  marketplace-extensions = with inputs.nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace; [
+    julialang.language-julia
+    ifplusor.semantic-lunaria
+  ];
+in {
   imports = [
     inputs.hyprland.homeManagerModules.default
   ];
@@ -41,10 +46,12 @@
   # programs.neovim.enable = true;
   # home.packages = with pkgs; [ steam ];
   home.packages = with pkgs; [
-    cowsay
+    libreoffice
     bitwarden
-    gnome3.adwaita-icon-theme # default gnome cursors    glib # gsettings
+    gnome3.adwaita-icon-theme # default gnome cursors
+    glib # gsettings
     swaylock
+    imv
     swayidle
     synology-drive-client
     git
@@ -63,9 +70,15 @@
     ltex-ls
     dolphin
     pdfarranger
+    logseq
     figma-linux
+    inkscape
+    bluetuith
+    bluez
     deno
     okular
+    grc
+    fzf
     firefox-wayland
     gh
     citrix_workspace
@@ -84,17 +97,10 @@
     rustup
     thunderbird
     zoom
+    unzrip
     scilab-bin
   ];
   services.gnome-keyring.enable = true;
-
-  programs.waybar = {
-    enable = true;
-    systemd = {
-      enable = false;
-      target = "graphical-session.target";
-    };
-  };
 
   xdg.mimeApps = {
     enable = true;
@@ -110,9 +116,19 @@
   };
 
   programs = {
+    waybar = {
+      enable = true;
+      systemd = {
+        enable = false;
+        target = "graphical-session.target";
+      };
+    };
     alacritty = {
       enable = true;
       settings = {
+        shell = {
+          program = "/home/lucienh/.nix-profile/bin/fish";
+        };
         font = {
           normal = {
             family = "BlexMono Nerd Font";
@@ -149,18 +165,64 @@
         };
       };
     };
+    fish = {
+      enable = true;
+      interactiveShellInit = ''
+        set fish_greeting # Disable greeting
+      '';
+      plugins = [
+        # Enable a plugin (here grc for colorized command output) from nixpkgs
+        {
+          name = "grc";
+          src = pkgs.fishPlugins.grc.src;
+        }
+        # Manually packaging and enable a plugin
+        {
+          name = "z";
+          src = pkgs.fetchFromGitHub {
+            owner = "jethrokuan";
+            repo = "z";
+            rev = "e0e1b9dfdba362f8ab1ae8c1afc7ccf62b89f7eb";
+            sha256 = "0dbnir6jbwjpjalz14snzd3cgdysgcs3raznsijd6savad3qhijc";
+          };
+        }
+      ];
+    };
+    zellij = {
+      enable = true;
+      enableFishIntegration = false;
+    };
+    helix = {
+      enable = true;
+    };
+    vscode = {
+      enable = true;
+
+      enableExtensionUpdateCheck = false;
+      enableUpdateCheck = false;
+      extensions = with pkgs.vscode-extensions;
+        [
+          kamadorueda.alejandra
+          ms-python.python
+          rust-lang.rust-analyzer
+          eamodio.gitlens
+          bbenoist.nix
+          arrterian.nix-env-selector
+        ]
+        ++ marketplace-extensions;
+      userSettings = {
+        "workbench.colorTheme" = "Semantic Lunaria Light";
+      };
+    };
+    home-manager = {
+      enable = true;
+    };
   };
 
   xdg.configFile."hypr/hyprland.conf".source = ./hyprland.conf;
 
   # Enable home-manager and git
-  programs.home-manager.enable = true;
   wayland.windowManager.hyprland.enable = true;
-
-  programs.vscode = {
-    enable = true;
-    extensions = with pkgs.vscode-extensions; [];
-  };
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
