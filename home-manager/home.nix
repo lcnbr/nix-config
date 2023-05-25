@@ -218,6 +218,7 @@ in {
         "workbench.colorTheme" = "Semantic Lunaria Light"; #theme, want to modify it 22.5.23
         "git.enableSmartCommit" = true; # autofetch and things
         "git.confirmSync" = false;
+        "git.autofetch" = true;
         "terminal.integrated.commandsToSkipShell" = [
           "language-julia.interrupt"
         ];
