@@ -46,6 +46,7 @@ in {
   # programs.neovim.enable = true;
   # home.packages = with pkgs; [ steam ];
   home.packages = with pkgs; [
+    nodejs
     libreoffice
     bitwarden
     gnome3.adwaita-icon-theme # default gnome cursors
@@ -55,6 +56,7 @@ in {
     swayidle
     synology-drive-client
     git
+    julia-bin
     zulip
     font-manager
     woeusb
