@@ -66,6 +66,7 @@
         udiskie
         libsForQt5.qt5ct
         libsForQt5.qtstyleplugins
+        libsForQt5.lightly
       ]);
 
     sessionVariables = {
@@ -74,8 +75,8 @@
       XDG_SESSION_TYPE = "wayland";
       #  GBM_BACKEND = "nvidia-drm";
       # __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+      QT_QPA_PLATFORMTHEME = "qt5ct";
       WLR_NO_HARDWARE_CURSORS = "1";
-      QT_QPA_PLATFORMTHEME = "gtk2";
       NIXOS_OZONE_WL = "1";
       MOZ_ENABLE_WAYLAND = "1";
       XCURSOR_SIZE = "48";
@@ -120,12 +121,6 @@
     LC_PAPER = "fr_CH.UTF-8";
     LC_TELEPHONE = "fr_CH.UTF-8";
     LC_TIME = "fr_CH.UTF-8";
-  };
-
-  qt = {
-    enable = true;
-    platformTheme = "gtk2";
-    style = "gtk2";
   };
 
   programs = {
@@ -204,6 +199,11 @@
     isNormalUser = true;
     description = "Lucien Huber";
     extraGroups = ["networkmanager" "wheel"];
+  };
+
+  qt = {
+    enable = true;
+    platformTheme = "qt5ct";
   };
 
   system.stateVersion = "22.11";

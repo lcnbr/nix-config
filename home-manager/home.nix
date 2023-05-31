@@ -8,6 +8,7 @@
   marketplace-extensions = with inputs.nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace; [
     julialang.language-julia
     ifplusor.semantic-lunaria
+    gregoire.dance
   ];
 in {
   imports = [
@@ -36,7 +37,6 @@ in {
     };
   };
 
-  # TODO: Set your username
   home = {
     username = "lucienh";
     homeDirectory = "/home/lucienh";
@@ -47,12 +47,16 @@ in {
   # home.packages = with pkgs; [ steam ];
   home.packages = with pkgs; [
     nodejs
+    obsidian
     libreoffice
     bitwarden
     gnome3.adwaita-icon-theme # default gnome cursors
     glib # gsettings
     swaylock
     imv
+    swayimg
+    nomacs
+    digikam
     swayidle
     synology-drive-client
     git
@@ -70,6 +74,8 @@ in {
     dua
     xplr
     ltex-ls
+    imagemagick
+    ghostscript
     dolphin
     pdfarranger
     logseq
@@ -85,6 +91,7 @@ in {
     gh
     citrix_workspace
     wofi
+    exiftool
     xdg-utils
     mako
     spotify-tui
@@ -212,6 +219,7 @@ in {
           arrterian.nix-env-selector
           denoland.vscode-deno
           ritwickdey.liveserver
+          github.copilot
         ]
         ++ marketplace-extensions;
       userSettings = {
@@ -222,11 +230,30 @@ in {
         "terminal.integrated.commandsToSkipShell" = [
           "language-julia.interrupt"
         ];
+        "julia.symbolCacheDownload" = true;
       };
     };
     home-manager = {
       enable = true;
     };
+  };
+
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Catppuccin-Macchiato-Compact-Pink-Dark";
+      package = pkgs.catppuccin-gtk.override {
+        accents = ["rosewater"];
+        size = "compact";
+        tweaks = ["rimless" "black"];
+        variant = "latte";
+      };
+    };
+  };
+
+  qt = {
+    enable = true;
+    platformTheme = "gtk";
   };
 
   xdg.configFile."hypr/hyprland.conf".source = ./hyprland.conf;
