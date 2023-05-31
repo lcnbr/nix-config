@@ -203,6 +203,9 @@ in {
     };
     helix = {
       enable = true;
+      settings = {
+        theme = "catppuccin_latte";
+      };
     };
     vscode = {
       enable = true;
