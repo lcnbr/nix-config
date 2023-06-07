@@ -152,9 +152,11 @@ in {
 
           size = 11;
         };
-        padding = {
-          x = 1;
-          y = 1;
+        window = {
+          padding = {
+            x = 1;
+            y = 1;
+          };
         };
       };
     };
