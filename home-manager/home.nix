@@ -86,6 +86,7 @@ in {
     deno
     okular
     grc
+    wezterm
     fzf
     firefox-wayland
     gh
@@ -150,6 +151,10 @@ in {
           };
 
           size = 11;
+        };
+        padding = {
+          x = 0.1;
+          y = 0.1;
         };
       };
     };
