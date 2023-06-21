@@ -62,6 +62,7 @@ in {
     git
     julia-bin
     zulip
+    betterbird
     font-manager
     woeusb
     charm
