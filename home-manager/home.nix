@@ -63,6 +63,7 @@ in {
     julia-bin
     zulip
     betterbird
+    freecad
     font-manager
     woeusb
     charm
