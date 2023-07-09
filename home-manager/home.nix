@@ -97,6 +97,7 @@ in {
     exiftool
     xdg-utils
     mako
+    povray
     spotify-tui
     qt6.qtwayland
     polkit_gnome
@@ -232,6 +233,7 @@ in {
           denoland.vscode-deno
           ritwickdey.liveserver
           github.copilot
+          foam.foam-vscode
         ]
         ++ marketplace-extensions;
       userSettings = {
