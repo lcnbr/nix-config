@@ -45,76 +45,81 @@ in {
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
   # home.packages = with pkgs; [ steam ];
-  home.packages = with pkgs; [
-    nodejs
-    obsidian
-    libreoffice
-    bitwarden
-    gnome3.adwaita-icon-theme # default gnome cursors
-    glib # gsettings
-    swaylock
-    imv
-    swayimg
-    nomacs
-    digikam
-    swayidle
-    synology-drive-client
-    git
-    julia-bin
-    zulip
-    betterbird
-    freecad
-    font-manager
-    woeusb
-    charm
-    glow
-    ntfs3g
-    zotero
-    gparted
-    lua
-    stylua
-    dua
-    xplr
-    ltex-ls
-    imagemagick
-    ghostscript
-    dolphin
-    pdfarranger
-    logseq
-    figma-linux
-    inkscape
-    bluetuith
-    bluez
-    deno
-    okular
-    grc
-    wezterm
-    fzf
-    firefox-wayland
-    gh
-    citrix_workspace
-    wofi
-    exiftool
-    xdg-utils
-    mako
-    povray
-    php
-    spotify-tui
-    qt6.qtwayland
-    polkit_gnome
-    keychain
-    gnome.gnome-keyring
-    networkmanagerapplet
-    tdesktop
-    sioyek
-    nodejs
-    element
-    rustup
-    thunderbird
-    zoom
-    unzrip
-    scilab-bin
-  ];
+
+  home.packages =
+    [inputs.devenv.packages.x86_64-linux.devenv]
+    ++ (with pkgs; [
+      nodejs
+      obsidian
+      libreoffice
+      bitwarden
+      gnome3.adwaita-icon-theme # default gnome cursors
+      glib # gsettings
+      swaylock
+      imv
+      direnv
+      element-desktop
+      swayimg
+      nomacs
+      digikam
+      swayidle
+      synology-drive-client
+      git
+      julia-bin
+      zulip
+      betterbird
+      freecad
+      font-manager
+      woeusb
+      charm
+      glow
+      ntfs3g
+      zotero
+      gparted
+      lua
+      stylua
+      dua
+      xplr
+      ltex-ls
+      imagemagick
+      ghostscript
+      dolphin
+      pdfarranger
+      logseq
+      figma-linux
+      inkscape
+      bluetuith
+      bluez
+      deno
+      okular
+      grc
+      wezterm
+      fzf
+      firefox-wayland
+      gh
+      citrix_workspace
+      wofi
+      exiftool
+      xdg-utils
+      mako
+      povray
+      php
+      spotify-tui
+      qt6.qtwayland
+      polkit_gnome
+      keychain
+      gnome.gnome-keyring
+      networkmanagerapplet
+      tdesktop
+      sioyek
+      nodejs
+      element
+      rustup
+      thunderbird
+      zoom
+      unzrip
+      scilab-bin
+    ]);
   services.gnome-keyring.enable = true;
 
   xdg.mimeApps = {
@@ -190,6 +195,7 @@ in {
       enable = true;
       interactiveShellInit = ''
         set fish_greeting # Disable greeting
+        direnv hook fish | source
       '';
       plugins = [
         # Enable a plugin (here grc for colorized command output) from nixpkgs
@@ -239,6 +245,7 @@ in {
         ]
         ++ marketplace-extensions;
       userSettings = {
+        "terminal.integrated.defaultProfile.linux" = "fish";
         "workbench.colorTheme" = "Semantic Lunaria Light"; #theme, want to modify it 22.5.23
         "git.enableSmartCommit" = true; # autofetch and things
         "git.confirmSync" = false;
