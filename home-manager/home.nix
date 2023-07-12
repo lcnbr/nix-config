@@ -98,6 +98,7 @@ in {
     xdg-utils
     mako
     povray
+    php
     spotify-tui
     qt6.qtwayland
     polkit_gnome
