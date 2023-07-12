@@ -5,12 +5,14 @@
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";#for additional extensions
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions"; #for additional extensions
 
     hm = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    devenv.url = "github:cachix/devenv/latest";
 
     hardware.url = "github:nixos/nixos-hardware";
     hyprland.url = "github:hyprwm/Hyprland";

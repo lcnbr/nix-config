@@ -108,6 +108,7 @@ in {
     tdesktop
     sioyek
     nodejs
+    element
     rustup
     thunderbird
     zoom

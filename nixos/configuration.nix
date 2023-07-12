@@ -62,6 +62,7 @@
     systemPackages =
       [inputs.alejandra.defaultPackage."x86_64-linux"]
       ++ (with pkgs; [
+        cachix
         home-manager
         udiskie
         libsForQt5.qt5ct
