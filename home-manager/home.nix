@@ -172,8 +172,9 @@ in {
     };
     git = {
       enable = true;
-      userName = "lucienh";
-      userEmail = "huberlulu@gmail.com";
+      userName = "lcnbr";
+      defaultBranch = "main";
+      userEmail = "im@lcnbr.ch";
     };
     nnn = {
       enable = true;
@@ -233,6 +234,7 @@ in {
       extensions = with pkgs.vscode-extensions;
         [
           kamadorueda.alejandra
+          DEVSENSE.phptools-vscode
           ms-python.python
           rust-lang.rust-analyzer
           eamodio.gitlens
