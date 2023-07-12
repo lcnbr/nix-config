@@ -173,7 +173,9 @@ in {
     git = {
       enable = true;
       userName = "lcnbr";
-      defaultBranch = "main";
+      extraConfig = {
+        defaultBranch = "main";
+      };
       userEmail = "im@lcnbr.ch";
     };
     nnn = {
