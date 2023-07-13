@@ -52,6 +52,7 @@ in {
       nodejs
       obsidian
       libreoffice
+      blender
       bitwarden
       gnome3.adwaita-icon-theme # default gnome cursors
       glib # gsettings
@@ -65,6 +66,7 @@ in {
       swayidle
       synology-drive-client
       git
+      starship
       julia-bin
       zulip
       betterbird
@@ -173,9 +175,6 @@ in {
     git = {
       enable = true;
       userName = "lcnbr";
-      extraConfig = {
-        defaultBranch = "main";
-      };
       userEmail = "im@lcnbr.ch";
     };
     nnn = {
@@ -236,7 +235,6 @@ in {
       extensions = with pkgs.vscode-extensions;
         [
           kamadorueda.alejandra
-          DEVSENSE.phptools-vscode
           ms-python.python
           rust-lang.rust-analyzer
           eamodio.gitlens
@@ -246,6 +244,7 @@ in {
           ritwickdey.liveserver
           github.copilot
           foam.foam-vscode
+          bmewburn.vscode-intelephense-client
         ]
         ++ marketplace-extensions;
       userSettings = {
