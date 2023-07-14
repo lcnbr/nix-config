@@ -67,6 +67,7 @@ in {
       synology-drive-client
       git
       starship
+      zoom-us
       julia-bin
       zulip
       betterbird
