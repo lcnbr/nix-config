@@ -70,7 +70,7 @@ in {
       zoom-us
       julia-bin
       zulip
-      betterbird
+
       freecad
       font-manager
       woeusb
@@ -82,6 +82,7 @@ in {
       lua
       stylua
       dua
+      tailscale
       xplr
       ltex-ls
       imagemagick
@@ -91,6 +92,7 @@ in {
       logseq
       figma-linux
       inkscape
+
       bluetuith
       bluez
       deno
@@ -119,7 +121,6 @@ in {
       element
       rustup
       thunderbird
-      zoom
       unzrip
       scilab-bin
     ]);

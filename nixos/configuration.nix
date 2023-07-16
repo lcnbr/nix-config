@@ -142,6 +142,13 @@
   };
 
   services = {
+    tailscale = {
+      enable = true;
+    };
+    mysql = {
+      enable = true;
+      package = pkgs.mariadb;
+    };
     greetd = {
       enable = true;
       settings = {
